@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- report qweb view -->
+        <record id="action_report_vit_krs" model="ir.actions.report">
+            <field name="name">Krs</field>
+            <field name="model">vit.krs</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">vit_akademik.vit_krs_report</field>
+            <field name="report_file">vit_akademik.vit_krs_report</field>
+            <field name="print_report_name">object.name</field>
+            <field name="binding_model_id" ref="vit_akademik.model_vit_krs"/>
+            <field name="binding_type">report</field>
+        </record>
+        <!-- document template -->
+        <template id="vit_akademik.vit_krs_report_document" >
+            <t t-call="web.external_layout">
+                <t t-set="doc" t-value="doc.with_context({'lang': lang})"/>
+                <div class="page">
+                    <h2>
+                        Krs: <span t-field="doc.name"/>
+                    </h2>
+                    <div class="row mt32 mb32">
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>State</strong>
+                            <p class="m-0" t-field="doc.state" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Jumlah sks</strong>
+                            <p class="m-0" t-field="doc.jumlah_sks" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Ip semester</strong>
+                            <p class="m-0" t-field="doc.ip_semester" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Max sks semester depan</strong>
+                            <p class="m-0" t-field="doc.max_sks_semester_depan" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Mahasiswa</strong>
+                            <p class="m-0" t-field="doc.mahasiswa_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Semester</strong>
+                            <p class="m-0" t-field="doc.semester_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Prodi</strong>
+                            <p class="m-0" t-field="doc.prodi_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Jenjang</strong>
+                            <p class="m-0" t-field="doc.jenjang_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Penasehat akademik</strong>
+                            <p class="m-0" t-field="doc.penasehat_akademik_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Perguruan tinggi</strong>
+                            <p class="m-0" t-field="doc.perguruan_tinggi_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Fakultas</strong>
+                            <p class="m-0" t-field="doc.fakultas_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Invoice</strong>
+                            <p class="m-0" t-field="doc.invoice_id"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="oe_structure"/>
+                <h2>Krs detail</h2>
+                <table class="table table-sm o_main_table" name="krs_detail_ids_table">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Sks</td>
+                            <td>Nilai huruf</td>
+                            <td>Nilai bobot</td>
+                            <td>Nilai total</td>
+                            <td>Mata kuliah</td>
+                            <td>Dosen</td>
+                            <td>Krs</td>
+                        </tr>
+                    </thead>
+                    <tbody class="krs_detail_ids_tbody">
+                        <tr t-foreach="doc.krs_detail_ids" t-as="line">
+                            <td><span t-field="line.name" /></td>
+                            <td><span t-field="line.sks" /></td>
+                            <td><span t-field="line.nilai_huruf" /></td>
+                            <td><span t-field="line.nilai_bobot" /></td>
+                            <td><span t-field="line.nilai_total" /></td>
+                            <td><span t-field="line.mata_kuliah_id" /></td>
+                            <td><span t-field="line.dosen_id" /></td>
+                            <td><span t-field="line.krs_id" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+            </t>
+        </template>
+
+        <!-- main template -->
+        <template id="vit_akademik.vit_krs_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-set="lang" t-value="doc.create_uid.lang"/>
+                    <t t-call="vit_akademik.vit_krs_report_document" />
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <!--record id="view_prodi_tree" model="ir.ui.view">
+            <field name="name">prodi_tree</field>
+            <field name="model">res.partner</field>
+            <field name="type">tree</field>
+            <field name="inherit_id" ref="base.view_partner_tree"/>
+            <field name="arch" type="xml">
+            </field>
+        </record-->
+        <!-- form view -->
+        <!-- <record id="view_prodi_form" model="ir.ui.view">
+            <field name="name">prodi_form</field>
+            <field name="model">res.partner</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="vit_akademik_inherit.view_partner_form"/>
+            <field name="arch" type="xml">
+                
+            </field>
+        </record> -->
+        <!-- search -->
+        <!--record id="view_prodi_search" model="ir.ui.view">
+            <field name="name">prodi</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_res_partner_filter"/>
+            <field name="arch" type="xml">
+            </field>
+        </record-->
+        <!-- action window -->
+        <record id="vit_akademik.action_prodi" model="ir.actions.act_window">
+            <field name="name">Prodi</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{"search_default_fieldname":1,"default_partner_type":'prodi'}</field>
+            <field name="domain">[('partner_type','=','prodi')]</field>
+            
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Prodi
+                </p><p>
+                Click the Create button to add a new Prodi
+                </p>
+            </field>
+        </record>
+
+        <menuitem active="1" id="vit_akademik.menu_prodi" name="Prodi" parent="vit_akademik.vit_akademik_config_menu" action="vit_akademik.action_prodi" sequence="50"/>
+    </data>
+</odoo>

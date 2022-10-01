@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <!--record id="view_partner_tree" model="ir.ui.view">
+            <field name="name">partner_tree</field>
+            <field name="model">res.partner</field>
+            <field name="type">tree</field>
+            <field name="inherit_id" ref="base.view_partner_tree"/>
+            <field name="arch" type="xml">
+            </field>
+        </record-->
+        <!-- form view -->
+        <record id="view_partner_form" model="ir.ui.view">
+            <field name="name">partner_form</field>
+            <field name="model">res.partner</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <field name="category_id" position="after">
+                    <field name="partner_type" required="1"></field>
+                </field>     
+
+                <notebook position="inside">
+                    <page name="akademik" string="Akademik">   
+                        <group>
+                            <group>
+                                
+                                <field name="perguruan_tinggi_id" 
+                                    attrs="{'invisible':[('partner_type','=','pt')],'required':[('partner_type','!=','pt')]}" 
+                                    domain="[('partner_type','=','pt')]"></field>                        
+                                <field name="fakultas_id" 
+                                    attrs="{'invisible':[('partner_type','in',['pt','fakultas'])],'required':[('partner_type','in',['prodi','mahasiswa'])]}" 
+                                    domain="[('partner_type','=','fakultas'),('perguruan_tinggi_id','=',perguruan_tinggi_id)]"></field>                        
+                                <field name="prodi_id" 
+                                    attrs="{'invisible':[('partner_type','in',['pt','fakultas','prodi'])],'required':[('partner_type','in',['mahasiswa'])]}" 
+                                    domain="[('partner_type','=','prodi'),('fakultas_id','=',fakultas_id)]"></field>   
+
+                                <field name="rektor_id" 
+                                    attrs="{'invisible':[('partner_type','!=','pt')],'required':[('partner_type','=','pt')]}" 
+                                    domain="[('job_id','=','Rektor')]"></field>
+                                <field name="wakil_rektor_1_id" 
+                                    attrs="{'invisible':[('partner_type','!=','pt')],'required':[('partner_type','=','pt')]}" 
+                                    domain="[('job_id','ilike','wakil rektor 1')]"></field>
+                                <field name="wakil_rektor_2_id" 
+                                    attrs="{'invisible':[('partner_type','!=','pt')],'required':[('partner_type','=','pt')]}" 
+                                    domain="[('job_id','ilike','wakil rektor 2')]"></field>
+                            </group>  
+
+                            <group>
+                                <field name="kode_pt" 
+                                    attrs="{'invisible':[('partner_type','!=','pt')], 'required':[('partner_type','=','pt')]}"></field>
+
+                                <field name="kode_fakultas" 
+                                    attrs="{'invisible':[('partner_type','!=','fakultas')], 'required':[('partner_type','=','fakultas')]}"></field>
+
+                                <field name="kode_prodi" 
+                                    attrs="{'invisible':[('partner_type','!=','prodi')], 'required':[('partner_type','=','prodi')]}"></field>
+
+                                <field name="nim" 
+                                    attrs="{'invisible':[('partner_type','!=','mahasiswa')], 'required':[('partner_type','=','mahasiswa')]}"></field>
+                            </group>
+                        </group>  
+                                                        
+                    </page>
+                </notebook>       
+            </field>
+        </record>
+        <!-- search -->
+        <!--record id="view_partner_search" model="ir.ui.view">
+            <field name="name">partner</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_res_partner_filter"/>
+            <field name="arch" type="xml">
+            </field>
+        </record-->
+        <!-- action window -->
+        <!-- <record id="vit_akademik.action_partner" model="ir.actions.act_window">
+            <field name="name">Partner</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="domain">[]</field>
+            <field name="view_ids" eval="[(5, 0, 0), 
+                (0, 0, {'view_mode': 'tree'}), 
+                (0, 0, {'view_mode': 'form', 'view_id': ref('view_partner_form')}), 
+                (0, 0, {'view_mode': 'kanban'})]"/> 
+
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Partner
+                </p><p>
+                Click the Create button to add a new Partner
+                </p>
+            </field>
+        </record> -->
+
+        <menuitem active="0" id="vit_akademik.menu_partner" name="Partner" parent="vit_akademik.vit_akademik_config_menu" action="vit_akademik.action_partner" sequence="180"/>
+    </data>
+</odoo>

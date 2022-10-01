@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <!--record id="view_kurikulum_tree" model="ir.ui.view">
+            <field name="name">kurikulum_tree</field>
+            <field name="model">vit.kurikulum</field>
+            <field name="type">tree</field>
+            <field name="inherit_id" ref="vit_akademik.view_vit_kurikulum_tree"/>
+            <field name="arch" type="xml">
+            </field>
+        </record-->
+        <!-- form view -->
+        <record id="view_kurikulum_form" model="ir.ui.view">
+            <field name="name">kurikulum_form</field>
+            <field name="model">vit.kurikulum</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="vit_akademik.view_vit_kurikulum_form"/>
+            <field name="arch" type="xml">
+            </field>
+        </record>
+        <!-- search -->
+        <!--record id="view_kurikulum_search" model="ir.ui.view">
+            <field name="name">kurikulum</field>
+            <field name="model">vit.kurikulum</field>
+            <field name="inherit_id" ref="vit_akademik.view_vit_kurikulum_search"/>
+            <field name="arch" type="xml">
+            </field>
+        </record-->
+        <!-- action window -->
+        <record id="vit_akademik.action_kurikulum" model="ir.actions.act_window">
+            <field name="name">Kurikulum</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.kurikulum</field>
+            <field name="view_mode">tree,form,kanban,pivot,graph</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="domain">[]</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Kurikulum
+                </p><p>
+                Click the Create button to add a new Kurikulum
+                </p>
+            </field>
+        </record>
+
+        <menuitem active="1" id="vit_akademik.menu_kurikulum" name="Kurikulum" parent="vit_akademik.vit_akademik_config_menu" action="vit_akademik.action_kurikulum" sequence="60"/>
+    </data>
+</odoo>

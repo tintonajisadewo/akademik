@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <!--record id="view_semester_tree" model="ir.ui.view">
+            <field name="name">semester_tree</field>
+            <field name="model">vit.semester</field>
+            <field name="type">tree</field>
+            <field name="inherit_id" ref="vit_akademik.view_vit_semester_tree"/>
+            <field name="arch" type="xml">
+            </field>
+        </record-->
+        <!-- form view -->
+        <record id="view_semester_form" model="ir.ui.view">
+            <field name="name">semester_form</field>
+            <field name="model">vit.semester</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="vit_akademik.view_vit_semester_form"/>
+            <field name="arch" type="xml">
+            </field>
+        </record>
+        <!-- search -->
+        <!--record id="view_semester_search" model="ir.ui.view">
+            <field name="name">semester</field>
+            <field name="model">vit.semester</field>
+            <field name="inherit_id" ref="vit_akademik.view_vit_semester_search"/>
+            <field name="arch" type="xml">
+            </field>
+        </record-->
+        <!-- action window -->
+        <record id="vit_akademik.action_semester" model="ir.actions.act_window">
+            <field name="name">Semester</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.semester</field>
+            <field name="view_mode">tree,form,kanban,pivot,graph</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="domain">[]</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Semester
+                </p><p>
+                Click the Create button to add a new Semester
+                </p>
+            </field>
+        </record>
+
+        <menuitem active="1" id="vit_akademik.menu_semester" name="Semester" parent="vit_akademik.vit_akademik_config_menu" action="vit_akademik.action_semester" sequence="90"/>
+    </data>
+</odoo>

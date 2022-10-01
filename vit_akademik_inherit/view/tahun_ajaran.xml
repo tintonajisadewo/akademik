@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <!--record id="view_tahun_ajaran_tree" model="ir.ui.view">
+            <field name="name">tahun_ajaran_tree</field>
+            <field name="model">vit.tahun_ajaran</field>
+            <field name="type">tree</field>
+            <field name="inherit_id" ref="vit_akademik.view_vit_tahun_ajaran_tree"/>
+            <field name="arch" type="xml">
+            </field>
+        </record-->
+        <!-- form view -->
+        <record id="view_tahun_ajaran_form" model="ir.ui.view">
+            <field name="name">tahun_ajaran_form</field>
+            <field name="model">vit.tahun_ajaran</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="vit_akademik.view_vit_tahun_ajaran_form"/>
+            <field name="arch" type="xml">
+            </field>
+        </record>
+        <!-- search -->
+        <!--record id="view_tahun_ajaran_search" model="ir.ui.view">
+            <field name="name">tahun_ajaran</field>
+            <field name="model">vit.tahun_ajaran</field>
+            <field name="inherit_id" ref="vit_akademik.view_vit_tahun_ajaran_search"/>
+            <field name="arch" type="xml">
+            </field>
+        </record-->
+        <!-- action window -->
+        <record id="vit_akademik.action_tahun_ajaran" model="ir.actions.act_window">
+            <field name="name">Tahun ajaran</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.tahun_ajaran</field>
+            <field name="view_mode">tree,form,kanban,pivot</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="domain">[]</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Tahun ajaran
+                </p><p>
+                Click the Create button to add a new Tahun ajaran
+                </p>
+            </field>
+        </record>
+
+        <menuitem active="1" id="vit_akademik.menu_tahun_ajaran" name="Tahun ajaran" parent="vit_akademik.vit_akademik_config_menu" action="vit_akademik.action_tahun_ajaran" sequence="70"/>
+    </data>
+</odoo>

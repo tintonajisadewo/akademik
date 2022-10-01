@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_vit_riwayat_mengajar_tree" model="ir.ui.view">
+            <field name="name">vit_riwayat_mengajar_tree</field>
+            <field name="model">vit.riwayat_mengajar</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Riwayat mengajar">
+                    <field name="name" />
+                    <field name="kode_mata_kuliah" />
+                    <field name="dosen_id" />
+                    <field name="semester_id" />
+                    <field name="mata_kuliah_id" />
+                    <field name="kelas_id" />
+                </tree>
+            </field>
+        </record>
+        <!-- pivot view -->
+        <record id="view_vit_riwayat_mengajar_pivot" model="ir.ui.view">
+            <field name="name">vit_riwayat_mengajar_tree</field>
+            <field name="model">vit.riwayat_mengajar</field>
+            <field name="type">pivot</field>
+            <field name="arch" type="xml">
+                <pivot string="Riwayat mengajar">
+                    <field name="dosen_id" type="row"/>
+                    <field name="semester_id" type="row"/>
+                    <field name="mata_kuliah_id" type="row"/>
+                    <field name="kelas_id" type="row"/>
+                </pivot>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_riwayat_mengajar_form" model="ir.ui.view">
+            <field name="name">vit_riwayat_mengajar_form</field>
+            <field name="model">vit.riwayat_mengajar</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Riwayat mengajar">
+                    <header>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <!--button type="object" name="action_view_detail" class="oe_stat_button" icon="fa-pencil-square-o"-->
+                                <!--field name="detail_count" widget="statinfo" string="Detail(s)"/-->
+                                <!--field name="detail_ids" invisible="1"/-->
+                            <!--/button-->
+                        </div>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" string="Riwayat mengajar Name"/>
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="kode_mata_kuliah" />
+                            </group>
+                            <group>
+                                <field name="dosen_id" />
+                                <field name="semester_id" />
+                                <field name="mata_kuliah_id" />
+                                <field name="kelas_id" />
+                            </group>
+                        </group>
+                        <notebook>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- search -->
+        <record id="view_vit_riwayat_mengajar_search" model="ir.ui.view">
+            <field name="name">vit_riwayat_mengajar</field>
+            <field name="model">vit.riwayat_mengajar</field>
+            <field name="arch" type="xml">
+                <search string="Riwayat mengajar">
+
+                    <filter string="Name" name="filter_by_name" domain="[('name','=','')]" />
+                    <filter string="Kode mata kuliah" name="filter_by_kode_mata_kuliah" domain="[('kode_mata_kuliah','=','')]" />
+                    <field name="name" select="True"/>
+                    <field name="kode_mata_kuliah" select="True"/>
+                    <field name="dosen_id" select="True"/>
+                    <field name="semester_id" select="True"/>
+                    <field name="mata_kuliah_id" select="True"/>
+                    <field name="kelas_id" select="True"/>
+                    <group string="Group By..">
+                        <filter string="Dosen" domain="[]" name="group_by_dosen_id" context="{'group_by':'dosen_id'}"/>
+                        <filter string="Semester" domain="[]" name="group_by_semester_id" context="{'group_by':'semester_id'}"/>
+                        <filter string="Mata kuliah" domain="[]" name="group_by_mata_kuliah_id" context="{'group_by':'mata_kuliah_id'}"/>
+                        <filter string="Kelas" domain="[]" name="group_by_kelas_id" context="{'group_by':'kelas_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <!-- kanban , to show image, please add image_small in the model -->
+        <record id="view_vit_riwayat_mengajar_kanban" model="ir.ui.view" >
+            <field name="name">vit_riwayat_mengajar</field>
+            <field name="model">vit.riwayat_mengajar</field>
+            <field name="arch" type="xml">
+                <kanban version="7.0">
+                    <field name="id" />
+                    <field name="name" />
+                    <field name="kode_mata_kuliah" />
+                    <field name="dosen_id" />
+                    <field name="semester_id" />
+                    <field name="mata_kuliah_id" />
+                    <field name="kelas_id" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                                <div class="oe_kanban_details">
+                                    <h4>
+                                        <a type="open"><field name="name"/></a>
+                                    </h4>
+                                    <ul>
+
+                                        <li>
+                                            <span class="text-muted">Dosen</span> <field name="dosen_id"></field>
+                                        </li>
+
+
+                                        <li>
+                                            <span class="text-muted">Semester</span> <field name="semester_id"></field>
+                                        </li>
+
+
+                                        <li>
+                                            <span class="text-muted">Mata kuliah</span> <field name="mata_kuliah_id"></field>
+                                        </li>
+
+
+                                        <li>
+                                            <span class="text-muted">Kelas</span> <field name="kelas_id"></field>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <!-- calendar if a date field exists -->
+        <!-- graph -->
+        <record id="view_vit_riwayat_mengajar_graph" model="ir.ui.view">
+            <field name="name">vit_riwayat_mengajar</field>
+            <field name="model">vit.riwayat_mengajar</field>
+            <field name="arch" type="xml">
+                <graph string="Riwayat mengajar" type="bar">
+                    <field name="dosen_id"/>
+                </graph>
+            </field>
+        </record>
+        <!-- action window -->
+        <record id="action_riwayat_mengajar" model="ir.actions.act_window">
+            <field name="name">Riwayat mengajar</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.riwayat_mengajar</field>
+            <field name="view_mode">tree,form,kanban,pivot,graph</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Riwayat mengajar
+                </p><p>
+                Click the Create button to add a new Riwayat mengajar
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_riwayat_mengajar" name="Riwayat mengajar" parent="vit_akademik_config_menu" action="action_riwayat_mengajar" sequence="130"/>
+    </data>
+</odoo>

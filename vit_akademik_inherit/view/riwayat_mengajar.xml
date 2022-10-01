@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <!--record id="view_riwayat_mengajar_tree" model="ir.ui.view">
+            <field name="name">riwayat_mengajar_tree</field>
+            <field name="model">vit.riwayat_mengajar</field>
+            <field name="type">tree</field>
+            <field name="inherit_id" ref="vit_akademik.view_vit_riwayat_mengajar_tree"/>
+            <field name="arch" type="xml">
+            </field>
+        </record-->
+        <!-- form view -->
+        <!-- <record id="view_riwayat_mengajar_form" model="ir.ui.view">
+            <field name="name">riwayat_mengajar_form</field>
+            <field name="model">vit.riwayat_mengajar</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="vit_akademik.view_vit_riwayat_mengajar_form"/>
+            <field name="arch" type="xml">
+            </field>
+        </record> -->
+        <!-- search -->
+        <!--record id="view_riwayat_mengajar_search" model="ir.ui.view">
+            <field name="name">riwayat_mengajar</field>
+            <field name="model">vit.riwayat_mengajar</field>
+            <field name="inherit_id" ref="vit_akademik.view_vit_riwayat_mengajar_search"/>
+            <field name="arch" type="xml">
+            </field>
+        </record-->
+        <!-- action window -->
+        <!-- <record id="vit_akademik.action_riwayat_mengajar" model="ir.actions.act_window">
+            <field name="name">Riwayat mengajar</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.riwayat_mengajar</field>
+            <field name="view_mode">tree,form,kanban,pivot,graph</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="domain">[]</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Riwayat mengajar
+                </p><p>
+                Click the Create button to add a new Riwayat mengajar
+                </p>
+            </field>
+        </record> -->
+
+        <menuitem active="0" id="vit_akademik.menu_riwayat_mengajar" name="Riwayat mengajar" parent="vit_akademik.vit_akademik_config_menu" action="vit_akademik.action_riwayat_mengajar" sequence="130"/>
+    </data>
+</odoo>

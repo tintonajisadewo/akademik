@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- action window -->
+        <record id="action_dosen" model="ir.actions.act_window">
+            <field name="name">Dosen</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.employee</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Dosen
+                </p><p>
+                Click the Create button to add a new Dosen
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_dosen" name="Dosen" parent="vit_akademik_config_menu" action="action_dosen" sequence="80"/>
+    </data>
+</odoo>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <!--record id="view_krs_tree" model="ir.ui.view">
+            <field name="name">krs_tree</field>
+            <field name="model">vit.krs</field>
+            <field name="type">tree</field>
+            <field name="inherit_id" ref="vit_akademik.view_vit_krs_tree"/>
+            <field name="arch" type="xml">
+            </field>
+        </record-->
+        <!-- form view -->
+        <record id="view_krs_form" model="ir.ui.view">
+            <field name="name">krs_form</field>
+            <field name="model">vit.krs</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="vit_akademik.view_vit_krs_form"/>
+            <field name="arch" type="xml">
+
+
+                <header position="inside">
+                    <button name="create_tagihan_spp" states="open" type="object" string="Generate Tagihan" />
+                </header>
+
+
+                <field name="semester_id" position="attributes">
+                    <attribute name="required">True</attribute>
+                </field>
+
+                <field name="mahasiswa_id" position="attributes">
+                    <attribute name="domain">[('partner_type','=','mahasiswa')]</attribute>
+                    <attribute name="required">True</attribute>
+                </field>
+
+                <field name="perguruan_tinggi_id" position="attributes">
+                    <attribute name="domain">[('partner_type','=','pt')]</attribute>
+                    <attribute name="required">True</attribute>
+                </field>
+
+                <field name="fakultas_id" position="attributes">
+                    <attribute name="domain">[('partner_type','=','fakultas'),('perguruan_tinggi_id','=',perguruan_tinggi_id)]</attribute>
+                    <attribute name="required">True</attribute>
+                </field>
+
+                <field name="prodi_id" position="attributes">
+                    <attribute name="domain">[('partner_type','=','prodi'),('fakultas_id','=',fakultas_id)]</attribute>
+                    <attribute name="required">True</attribute>
+                </field>
+            </field>
+        </record>
+        <!-- search -->
+        <!--record id="view_krs_search" model="ir.ui.view">
+            <field name="name">krs</field>
+            <field name="model">vit.krs</field>
+            <field name="inherit_id" ref="vit_akademik.view_vit_krs_search"/>
+            <field name="arch" type="xml">
+            </field>
+        </record-->
+        <!-- action window -->
+        <record id="vit_akademik.action_krs" model="ir.actions.act_window">
+            <field name="name">Krs</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.krs</field>
+            <field name="view_mode">tree,form,kanban,pivot,graph</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="domain">[]</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Krs
+                </p><p>
+                Click the Create button to add a new Krs
+                </p>
+            </field>
+        </record>
+
+        <menuitem active="1" id="vit_akademik.menu_krs" name="KRS" parent="vit_akademik.vit_akademik_sub_menu" action="vit_akademik.action_krs" sequence="160"/>
+    </data>
+</odoo>

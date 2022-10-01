@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- report qweb view -->
+        <record id="action_report_vit_riwayat_mengajar" model="ir.actions.report">
+            <field name="name">Riwayat mengajar</field>
+            <field name="model">vit.riwayat_mengajar</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">vit_akademik.vit_riwayat_mengajar_report</field>
+            <field name="report_file">vit_akademik.vit_riwayat_mengajar_report</field>
+            <field name="print_report_name">object.name</field>
+            <field name="binding_model_id" ref="vit_akademik.model_vit_riwayat_mengajar"/>
+            <field name="binding_type">report</field>
+        </record>
+        <!-- document template -->
+        <template id="vit_akademik.vit_riwayat_mengajar_report_document" >
+            <t t-call="web.external_layout">
+                <t t-set="doc" t-value="doc.with_context({'lang': lang})"/>
+                <div class="page">
+                    <h2>
+                        Riwayat mengajar: <span t-field="doc.name"/>
+                    </h2>
+                    <div class="row mt32 mb32">
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Kode mata kuliah</strong>
+                            <p class="m-0" t-field="doc.kode_mata_kuliah" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Dosen</strong>
+                            <p class="m-0" t-field="doc.dosen_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Semester</strong>
+                            <p class="m-0" t-field="doc.semester_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Mata kuliah</strong>
+                            <p class="m-0" t-field="doc.mata_kuliah_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Kelas</strong>
+                            <p class="m-0" t-field="doc.kelas_id"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="oe_structure"/>
+            </t>
+        </template>
+
+        <!-- main template -->
+        <template id="vit_akademik.vit_riwayat_mengajar_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-set="lang" t-value="doc.create_uid.lang"/>
+                    <t t-call="vit_akademik.vit_riwayat_mengajar_report_document" />
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

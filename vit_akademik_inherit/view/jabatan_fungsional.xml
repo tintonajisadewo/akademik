@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <!--record id="view_jabatan_fungsional_tree" model="ir.ui.view">
+            <field name="name">jabatan_fungsional_tree</field>
+            <field name="model">vit.jabatan_fungsional</field>
+            <field name="type">tree</field>
+            <field name="inherit_id" ref="vit_akademik.view_vit_jabatan_fungsional_tree"/>
+            <field name="arch" type="xml">
+            </field>
+        </record-->
+        <!-- form view -->
+        <record id="view_jabatan_fungsional_form" model="ir.ui.view">
+            <field name="name">jabatan_fungsional_form</field>
+            <field name="model">vit.jabatan_fungsional</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="vit_akademik.view_vit_jabatan_fungsional_form"/>
+            <field name="arch" type="xml">
+            </field>
+        </record>
+        <!-- search -->
+        <!--record id="view_jabatan_fungsional_search" model="ir.ui.view">
+            <field name="name">jabatan_fungsional</field>
+            <field name="model">vit.jabatan_fungsional</field>
+            <field name="inherit_id" ref="vit_akademik.view_vit_jabatan_fungsional_search"/>
+            <field name="arch" type="xml">
+            </field>
+        </record-->
+        <!-- action window -->
+        <record id="vit_akademik.action_jabatan_fungsional" model="ir.actions.act_window">
+            <field name="name">Jabatan fungsional</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.jabatan_fungsional</field>
+            <field name="view_mode">tree,form,kanban,pivot</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="domain">[]</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Jabatan fungsional
+                </p><p>
+                Click the Create button to add a new Jabatan fungsional
+                </p>
+            </field>
+        </record>
+
+        <menuitem active="1" id="vit_akademik.menu_jabatan_fungsional" name="Jabatan fungsional" parent="vit_akademik.vit_akademik_config_menu" action="vit_akademik.action_jabatan_fungsional" sequence="120"/>
+    </data>
+</odoo>

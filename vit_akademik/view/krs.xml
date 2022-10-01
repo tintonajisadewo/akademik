@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_vit_krs_tree" model="ir.ui.view">
+            <field name="name">vit_krs_tree</field>
+            <field name="model">vit.krs</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Krs">
+                    <field name="name" />
+                    <field name="state" />
+                    <field name="jumlah_sks" />
+                    <field name="ip_semester" />
+                    <field name="max_sks_semester_depan" />
+                    <field name="mahasiswa_id" />
+                    <field name="semester_id" />
+                    <field name="prodi_id" />
+                    <field name="jenjang_id" />
+                    <field name="penasehat_akademik_id" />
+                    <field name="perguruan_tinggi_id" />
+                    <field name="fakultas_id" />
+                    <field name="invoice_id" />
+                </tree>
+            </field>
+        </record>
+        <!-- pivot view -->
+        <record id="view_vit_krs_pivot" model="ir.ui.view">
+            <field name="name">vit_krs_tree</field>
+            <field name="model">vit.krs</field>
+            <field name="type">pivot</field>
+            <field name="arch" type="xml">
+                <pivot string="Krs">
+                    <field name="mahasiswa_id" type="row"/>
+                    <field name="semester_id" type="row"/>
+                    <field name="prodi_id" type="row"/>
+                    <field name="jenjang_id" type="row"/>
+                    <field name="penasehat_akademik_id" type="row"/>
+                    <field name="perguruan_tinggi_id" type="row"/>
+                    <field name="fakultas_id" type="row"/>
+                    <field name="invoice_id" type="row"/>
+                </pivot>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_krs_form" model="ir.ui.view">
+            <field name="name">vit_krs_form</field>
+            <field name="model">vit.krs</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Krs">
+                    <header>
+                        <button string="Confirm" type="object" name="action_confirm" states="draft" />
+                        <button string="Mark as Done" type="object" name="action_done" states="open" />
+                        <button string="Reset to Draft" type="object" name="action_draft" states="open,done" />
+                        <field name="state" widget="statusbar" />
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <!--button type="object" name="action_view_detail" class="oe_stat_button" icon="fa-pencil-square-o"-->
+                                <!--field name="detail_count" widget="statinfo" string="Detail(s)"/-->
+                                <!--field name="detail_ids" invisible="1"/-->
+                            <!--/button-->
+                        </div>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" string="Krs Name"/>
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="jumlah_sks" />
+                                <field name="ip_semester" />
+                                <field name="max_sks_semester_depan" />
+                            </group>
+                            <group>
+                                <field name="mahasiswa_id" />
+                                <field name="semester_id" />
+                                <field name="prodi_id" />
+                                <field name="jenjang_id" />
+                                <field name="penasehat_akademik_id" />
+                                <field name="perguruan_tinggi_id" />
+                                <field name="fakultas_id" />
+                                <field name="invoice_id" />
+                            </group>
+                        </group>
+                        <notebook>
+                            <page name="krs_detail_ids" string="Krs detail">
+                                <field name="krs_detail_ids"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- search -->
+        <record id="view_vit_krs_search" model="ir.ui.view">
+            <field name="name">vit_krs</field>
+            <field name="model">vit.krs</field>
+            <field name="arch" type="xml">
+                <search string="Krs">
+
+                    <filter string="Name" name="filter_by_name" domain="[('name','=','')]" />
+                    <filter string="State" name="filter_by_state" domain="[('state','=','')]" />
+                    <filter string="Jumlah sks" name="filter_by_jumlah_sks" domain="[('jumlah_sks','=','')]" />
+                    <filter string="Ip semester" name="filter_by_ip_semester" domain="[('ip_semester','=','')]" />
+                    <filter string="Max sks semester depan" name="filter_by_max_sks_semester_depan" domain="[('max_sks_semester_depan','=','')]" />
+                    <field name="name" select="True"/>
+                    <field name="state" select="True"/>
+                    <field name="jumlah_sks" select="True"/>
+                    <field name="ip_semester" select="True"/>
+                    <field name="max_sks_semester_depan" select="True"/>
+                    <field name="mahasiswa_id" select="True"/>
+                    <field name="semester_id" select="True"/>
+                    <field name="prodi_id" select="True"/>
+                    <field name="jenjang_id" select="True"/>
+                    <field name="penasehat_akademik_id" select="True"/>
+                    <field name="perguruan_tinggi_id" select="True"/>
+                    <field name="fakultas_id" select="True"/>
+                    <field name="invoice_id" select="True"/>
+                    <group string="Group By..">
+                        <filter string="Mahasiswa" domain="[]" name="group_by_mahasiswa_id" context="{'group_by':'mahasiswa_id'}"/>
+                        <filter string="Semester" domain="[]" name="group_by_semester_id" context="{'group_by':'semester_id'}"/>
+                        <filter string="Prodi" domain="[]" name="group_by_prodi_id" context="{'group_by':'prodi_id'}"/>
+                        <filter string="Jenjang" domain="[]" name="group_by_jenjang_id" context="{'group_by':'jenjang_id'}"/>
+                        <filter string="Penasehat akademik" domain="[]" name="group_by_penasehat_akademik_id" context="{'group_by':'penasehat_akademik_id'}"/>
+                        <filter string="Perguruan tinggi" domain="[]" name="group_by_perguruan_tinggi_id" context="{'group_by':'perguruan_tinggi_id'}"/>
+                        <filter string="Fakultas" domain="[]" name="group_by_fakultas_id" context="{'group_by':'fakultas_id'}"/>
+                        <filter string="Invoice" domain="[]" name="group_by_invoice_id" context="{'group_by':'invoice_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <!-- kanban , to show image, please add image_small in the model -->
+        <record id="view_vit_krs_kanban" model="ir.ui.view" >
+            <field name="name">vit_krs</field>
+            <field name="model">vit.krs</field>
+            <field name="arch" type="xml">
+                <kanban version="7.0">
+                    <field name="id" />
+                    <field name="name" />
+                    <field name="state" />
+                    <field name="jumlah_sks" />
+                    <field name="ip_semester" />
+                    <field name="max_sks_semester_depan" />
+                    <field name="mahasiswa_id" />
+                    <field name="semester_id" />
+                    <field name="prodi_id" />
+                    <field name="jenjang_id" />
+                    <field name="penasehat_akademik_id" />
+                    <field name="perguruan_tinggi_id" />
+                    <field name="fakultas_id" />
+                    <field name="invoice_id" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                                <div class="oe_kanban_details">
+                                    <h4>
+                                        <a type="open"><field name="name"/></a>
+                                    </h4>
+                                    <ul>
+
+                                        <li>
+                                            <span class="text-muted">Mahasiswa</span> <field name="mahasiswa_id"></field>
+                                        </li>
+
+
+                                        <li>
+                                            <span class="text-muted">Semester</span> <field name="semester_id"></field>
+                                        </li>
+
+
+                                        <li>
+                                            <span class="text-muted">Prodi</span> <field name="prodi_id"></field>
+                                        </li>
+
+
+                                        <li>
+                                            <span class="text-muted">Jenjang</span> <field name="jenjang_id"></field>
+                                        </li>
+
+                                        <!--
+                                        <li>
+                                            <span class="text-muted">Penasehat akademik</span> <field name="penasehat_akademik_id"></field>
+                                        </li>
+                                        -->
+                                        <!--
+                                        <li>
+                                            <span class="text-muted">Perguruan tinggi</span> <field name="perguruan_tinggi_id"></field>
+                                        </li>
+                                        -->
+                                        <!--
+                                        <li>
+                                            <span class="text-muted">Fakultas</span> <field name="fakultas_id"></field>
+                                        </li>
+                                        -->
+                                        <!--
+                                        <li>
+                                            <span class="text-muted">Invoice</span> <field name="invoice_id"></field>
+                                        </li>
+                                        -->
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <!-- calendar if a date field exists -->
+        <!-- graph -->
+        <record id="view_vit_krs_graph" model="ir.ui.view">
+            <field name="name">vit_krs</field>
+            <field name="model">vit.krs</field>
+            <field name="arch" type="xml">
+                <graph string="Krs" type="bar">
+                    <field name="mahasiswa_id"/>
+                </graph>
+            </field>
+        </record>
+        <!-- action window -->
+        <record id="action_krs" model="ir.actions.act_window">
+            <field name="name">Krs</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.krs</field>
+            <field name="view_mode">tree,form,kanban,pivot,graph</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Krs
+                </p><p>
+                Click the Create button to add a new Krs
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_krs" name="Krs" parent="vit_akademik_sub_menu" action="action_krs" sequence="160"/>
+    </data>
+</odoo>

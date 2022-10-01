@@ -1,0 +1,7 @@
+<odoo>
+	<data>
+		<menuitem id="vit_akademik_top_menu" name="Akademik" sequence="20" web_icon="vit_akademik,static/description/icon.png" />
+		<menuitem id="vit_akademik_sub_menu" name="Operations" sequence="40" parent="vit_akademik_top_menu" />
+		<menuitem id="vit_akademik_config_menu" name="Configurations" sequence="50" parent="vit_akademik_top_menu" />
+	</data>
+</odoo>

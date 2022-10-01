@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_vit_riwayat_pendidikan_tree" model="ir.ui.view">
+            <field name="name">vit_riwayat_pendidikan_tree</field>
+            <field name="model">vit.riwayat_pendidikan</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Riwayat pendidikan">
+                    <field name="name" />
+                    <field name="gelar_akademik" />
+                    <field name="tanggal_ijasah" />
+                    <field name="perguruan_tinggi_id" />
+                    <field name="jenjang_id" />
+                    <field name="dosen_id" />
+                </tree>
+            </field>
+        </record>
+        <!-- pivot view -->
+        <record id="view_vit_riwayat_pendidikan_pivot" model="ir.ui.view">
+            <field name="name">vit_riwayat_pendidikan_tree</field>
+            <field name="model">vit.riwayat_pendidikan</field>
+            <field name="type">pivot</field>
+            <field name="arch" type="xml">
+                <pivot string="Riwayat pendidikan">
+                    <field name="perguruan_tinggi_id" type="row"/>
+                    <field name="jenjang_id" type="row"/>
+                    <field name="dosen_id" type="row"/>
+                </pivot>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_riwayat_pendidikan_form" model="ir.ui.view">
+            <field name="name">vit_riwayat_pendidikan_form</field>
+            <field name="model">vit.riwayat_pendidikan</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Riwayat pendidikan">
+                    <header>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <!--button type="object" name="action_view_detail" class="oe_stat_button" icon="fa-pencil-square-o"-->
+                                <!--field name="detail_count" widget="statinfo" string="Detail(s)"/-->
+                                <!--field name="detail_ids" invisible="1"/-->
+                            <!--/button-->
+                        </div>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" string="Riwayat pendidikan Name"/>
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="gelar_akademik" />
+                                <field name="tanggal_ijasah" />
+                            </group>
+                            <group>
+                                <field name="perguruan_tinggi_id" />
+                                <field name="jenjang_id" />
+                                <field name="dosen_id" />
+                            </group>
+                        </group>
+                        <notebook>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- search -->
+        <record id="view_vit_riwayat_pendidikan_search" model="ir.ui.view">
+            <field name="name">vit_riwayat_pendidikan</field>
+            <field name="model">vit.riwayat_pendidikan</field>
+            <field name="arch" type="xml">
+                <search string="Riwayat pendidikan">
+
+                    <filter string="Name" name="filter_by_name" domain="[('name','=','')]" />
+                    <filter string="Gelar akademik" name="filter_by_gelar_akademik" domain="[('gelar_akademik','=','')]" />
+                    <filter string="Tanggal ijasah" name="filter_by_tanggal_ijasah" domain="[('tanggal_ijasah','=','')]" />
+                    <field name="name" select="True"/>
+                    <field name="gelar_akademik" select="True"/>
+                    <field name="tanggal_ijasah" select="True"/>
+                    <field name="perguruan_tinggi_id" select="True"/>
+                    <field name="jenjang_id" select="True"/>
+                    <field name="dosen_id" select="True"/>
+                    <group string="Group By..">
+                        <filter string="Perguruan tinggi" domain="[]" name="group_by_perguruan_tinggi_id" context="{'group_by':'perguruan_tinggi_id'}"/>
+                        <filter string="Jenjang" domain="[]" name="group_by_jenjang_id" context="{'group_by':'jenjang_id'}"/>
+                        <filter string="Dosen" domain="[]" name="group_by_dosen_id" context="{'group_by':'dosen_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <!-- kanban , to show image, please add image_small in the model -->
+        <record id="view_vit_riwayat_pendidikan_kanban" model="ir.ui.view" >
+            <field name="name">vit_riwayat_pendidikan</field>
+            <field name="model">vit.riwayat_pendidikan</field>
+            <field name="arch" type="xml">
+                <kanban version="7.0">
+                    <field name="id" />
+                    <field name="name" />
+                    <field name="gelar_akademik" />
+                    <field name="tanggal_ijasah" />
+                    <field name="perguruan_tinggi_id" />
+                    <field name="jenjang_id" />
+                    <field name="dosen_id" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                                <div class="oe_kanban_details">
+                                    <h4>
+                                        <a type="open"><field name="name"/></a>
+                                    </h4>
+                                    <ul>
+
+                                        <li>
+                                            <span class="text-muted">Perguruan tinggi</span> <field name="perguruan_tinggi_id"></field>
+                                        </li>
+
+
+                                        <li>
+                                            <span class="text-muted">Jenjang</span> <field name="jenjang_id"></field>
+                                        </li>
+
+
+                                        <li>
+                                            <span class="text-muted">Dosen</span> <field name="dosen_id"></field>
+                                        </li>
+
+                                        <li>
+                                            <span class="text-muted">Tanggal ijasah</span> <field name="tanggal_ijasah"></field>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <!-- calendar if a date field exists -->
+        <record id="view_vit_riwayat_pendidikan_cal" model="ir.ui.view">
+            <field name="name">vit_riwayat_pendidikan_cal</field>
+            <field name="model">vit.riwayat_pendidikan</field>
+            <field name="arch" type="xml">
+                <calendar string="Riwayat pendidikan" date_start="tanggal_ijasah">
+                    <field name="name" />
+                </calendar>
+            </field>
+        </record>
+        <!-- graph -->
+        <record id="view_vit_riwayat_pendidikan_graph" model="ir.ui.view">
+            <field name="name">vit_riwayat_pendidikan</field>
+            <field name="model">vit.riwayat_pendidikan</field>
+            <field name="arch" type="xml">
+                <graph string="Riwayat pendidikan" type="bar">
+                    <field name="perguruan_tinggi_id"/>
+                </graph>
+            </field>
+        </record>
+        <!-- action window -->
+        <record id="action_riwayat_pendidikan" model="ir.actions.act_window">
+            <field name="name">Riwayat pendidikan</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.riwayat_pendidikan</field>
+            <field name="view_mode">tree,form,kanban,pivot,calendar,graph</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Riwayat pendidikan
+                </p><p>
+                Click the Create button to add a new Riwayat pendidikan
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_riwayat_pendidikan" name="Riwayat pendidikan" parent="vit_akademik_config_menu" action="action_riwayat_pendidikan" sequence="140"/>
+    </data>
+</odoo>
